@@ -62,4 +62,4 @@ class Verify extends React.Component {
     };
 };
 
-export default Verify;
+export default Verify;   
