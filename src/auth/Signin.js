@@ -35,7 +35,7 @@ class Signin extends React.Component {
             password: this.state.password
         }
         // and now let's post this informations to the server
-        axios.post("http://localhost:8082/api/auth/signin", signInPatientInfos)
+        axios.post("http://localhost:8083/api/auth/signin", signInPatientInfos)
             .then(response => {
                 alert("done my bro, you can see you medical doc")
                 console.log(response);
@@ -77,10 +77,21 @@ class Signin extends React.Component {
 
     render() {
         const {redirect, token, data } = this.state;
-        if(redirect) {
+        if(redirect && data.roles[0]==="ROLE_Admin") {
             return(
                 <Redirect to={{
-                    pathname: "/user/patient/dahsboard",
+                    pathname: "/admin/dashboard",
+                    state: {
+                        accessToken: token,
+                        data: data
+                    }
+                }}/>
+            );
+        }
+        if(redirect && data.roles[0]==="ROLE_Medecin") {
+            return(
+                <Redirect to={{
+                    pathname: "/medecin",
                     state: {
                         accessToken: token,
                         data: data

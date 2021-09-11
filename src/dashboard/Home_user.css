@@ -1,0 +1,12 @@
+.sections{
+    display: flex;
+}
+.userLeft_section {
+    background-color: #515782;
+    width: 20%;
+    height: 100vh;
+    border: 1px solid #515782;
+}
+.userRight_section {
+    width: 80%;
+}

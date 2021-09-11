@@ -16,14 +16,16 @@ class Verify extends React.Component {
     }
     componentDidMount = (props) => {
         // let's build the url 
-        const url = "http://localhost:8082/api/auth/verify"+this.props.location.search;
+        console.log(this.props.location.search)
+        const url = "http://localhost:8083/api/auth/verify"+this.props.location.search;
         this.setState({verifyUrl : url});
     }
 
     onClickVerification = async () => {
         const response = await axios.get(this.state.verifyUrl);
         if (response.data) {
-            this.setState({status : response.data});
+            // this.setState({status : response.data});
+            console.log(response.data)
         }        
     }
 

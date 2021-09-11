@@ -18,12 +18,17 @@ class SignUp extends React.Component {
 
     initialState = {
         username:'',
+        nom:'',
+        prenom:'',
+        dateNaissance: '',
+        lieuNaissance:'',
         email:'', 
-        dateNaissance: '', 
-        numeroTel:'',
-        sex:'', 
-        sin:'', 
-        mot_de_passe:''
+        sex:null,       
+        numTelephone:'',
+        activiteProf:'',
+        numeroSecuriteSocial:'',
+        groupeSanguin:null,
+        password:''
     }
 
     submitPatientInformations = (event) => {
@@ -32,17 +37,22 @@ class SignUp extends React.Component {
 
         const patient = {
              username : this.state.username,
+             nom:this.state.nom,
+             prenom: this.state.prenom,
              email : this.state.email,
-             dateN : this.state.dateNaissance,
+             dateNaissance : this.state.dateNaissance,
+             lieuNaissance: this.state.lieuNaissance,
              sex:  this.state.sex,
-             numTel: this.state.numeroTel,
-             sin: this.state.sin,
-             password: this.state.mot_de_passe
+             numTelephone: this.state.numTelephone,
+             activiteProf: this.state.activiteProf,
+             numeroSecuriteSocial: this.state.numeroSecuriteSocial,
+             password: this.state.password,
+             groupeSanguin: this.state.groupeSanguin
         }
 
         console.log(patient);
 
-        axios.post("http://localhost:8082/api/auth/signup", patient)
+        axios.post("http://localhost:8083/api/auth/signup", patient)
             .then(response => {
                alert(response.data.message );
                this.setState(this.initialState);
@@ -60,7 +70,7 @@ class SignUp extends React.Component {
     }
 
     render() {
-        const {username, email, dateNaissance, numeroTel, sex, sin, mot_de_passe} = this.state;
+        const {username,nom, prenom, email, dateNaissance, lieuNaissance, numTelephone, sex, numeroSecuriteSocial, password,activiteProf, groupeSanguin} = this.state;
         return (
             <div className="signUp-container">
                 <div className="leftSide-section ">
@@ -72,17 +82,36 @@ class SignUp extends React.Component {
                     </div>
                     <form onSubmit={this.submitPatientInformations} id="signUpForm" >
                         <i className="fas fa-user"></i><input type="text" placeholder="username" name="username" value={username} onChange={this.patientChange} autoComplete="off" required/><br/>
+                        <i className="fas fa-user"></i><input type="text" placeholder="nom" name="nom" value={nom} onChange={this.patientChange} autoComplete="off" required/><br/>
+                        <i className="fas fa-user"></i><input type="text" placeholder="prenom" name="prenom" value={prenom} onChange={this.patientChange} autoComplete="off" required/><br/>
+                        <i className="fas fa-user"></i><input type="text" placeholder="activiteProf" name="activiteProf" value={activiteProf} onChange={this.patientChange} autoComplete="off" required/><br/>
                         <i className="fas fa-envelope"></i><input type="email" placeholder="email" name="email" value={email} onChange={this.patientChange} autoComplete="off" required/><br/>
                         <i className="fas fa-birthday-cake"></i><input type="date" name="dateNaissance"  value={dateNaissance} onChange={this.patientChange} autoComplete="off" required/><br/>
-                        <i className="fas fa-phone-volume"></i><input type="text" placeholder="numero de tel" name="numeroTel" value={numeroTel} onChange={this.patientChange} autoComplete="off" required />
+                        <i className="fas fa-user"></i><input type="text" placeholder="lieuNaissance" name="lieuNaissance" value={lieuNaissance} onChange={this.patientChange} autoComplete="off" required/><br/>
+
+                        <i className="fas fa-phone-volume"></i><input type="text" placeholder="numero de tel" name="numTelephone" value={numTelephone} onChange={this.patientChange} autoComplete="off" required />
                         <div className="sex-choice">
                             <select name="sex" value={sex} onChange={this.patientChange} required>
+                                <option disabled selected>sex</option>
                                 <option value="Homme">homme</option>
                                 <option value="FEMME">femme</option>
                             </select>
                         </div>
-                        <i className="fas fa-shield-check"></i><input type="text" placeholder="numero de sécurité" name="sin" value={sin} onChange={this.patientChange} autoComplete="off" required/><br/>
-                        <i className="fas fa-unlock"></i><input type="password" placeholder="password" name="mot_de_passe" value={mot_de_passe} onChange={this.patientChange} autoComplete="off" required/>
+                        <div className="sex-choice">
+                            <select name="groupeSanguin" value={groupeSanguin} onChange={this.patientChange} required>
+                                <option disabled selected>groupe sanguin</option>
+                                    <option value='O+' >O+</option>
+                                    <option value='A+' >A+</option>
+                                    <option value='B+' >B+</option>
+                                    <option value='O-' >O-</option>
+                                    <option value='A-' >A-</option>
+                                    <option value='AB+' >AB+</option>
+                                    <option value='B-' >B-</option>
+                                    <option value='AB-'>AB-</option>
+                            </select>
+                        </div>
+                        <i className="fas fa-shield-check"></i><input type="text" placeholder="numero de sécurité" name="numeroSecuriteSocial" value={numeroSecuriteSocial} onChange={this.patientChange} autoComplete="off" required/><br/>
+                        <i className="fas fa-unlock"></i><input type="password" placeholder="password" name="password" value={password} onChange={this.patientChange} autoComplete="off" required/>
                         <button type="submit" className="signup-btn ">valider</button>
                     </form>
                     <Link to="/signin">

@@ -2,8 +2,8 @@ import React from 'react';
 import HomePage from './homeComponents/HomePage';
 import SignUp from './auth/SignUp';
 import SignIn from './auth/Signin';
-import Verify from './auth/Verify';
-import DashoardPatient from './usersDashboard/patient/components/Dashboard'
+ import Verify from './auth/Verify';
+import Home_user from './dashboard/Home_user';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const Home = () => {
@@ -14,8 +14,9 @@ const Home = () => {
                     <Route path="/home" component={HomePage} />
                     <Route path="/signup" component={SignUp}/>
                     <Route path="/signin" component={SignIn}/>
-                    <Route path="/user/patient/dahsboard" component={DashoardPatient} />
-                    <Route path="/verify" component={Verify} />
+                    <Route path="/verify" component={Verify} />   
+                    <Route path="/admin" component={Home_user}/>
+                     {/* <Route path='/medecin' component={Home_user} /> */}
                 </Switch>
             </Router>
     );

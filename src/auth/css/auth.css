@@ -46,6 +46,8 @@
     float: right;
     width: 65%;
     text-align: center;
+    height: 100vh;
+    overflow: scroll;
 }
 
 .rightSide-section .title{
