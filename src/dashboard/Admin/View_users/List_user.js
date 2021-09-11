@@ -6,13 +6,10 @@ class List_user extends React.Component{
     
     render() {
         const list = this.props.listUser;
-        console.log(typeof list)
+        console.log('this is my list', list)
         const mylist = list.map((myItem) =>  
-        <Show_user username={myItem}/>  
+        <Show_user user={myItem}/>  
       );  
-        console.log(list)
-       
-        console.log('iam here')
         return(
             <div className='List_user'>
                 {mylist}

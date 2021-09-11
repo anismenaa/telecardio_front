@@ -3,14 +3,48 @@ import React from 'react';
 import { Container, Row, Col, Image, Button} from 'react-bootstrap';
 import ListGroup from 'react-bootstrap/ListGroup'
 import Faker from 'faker';
+import axios from 'axios';
+import { Link, Redirect } from 'react-router-dom';
+import Consulte_user from './Consulte_user';
 
 class Show_user extends React.Component{
 
     constructor(props) {
         super(props);
-        
+
+        this.state = {
+            reload: 'false'
+        }
     }
 
+
+    componentDidMount = ()=> {
+        console.log(this.props.user)
+    }
+
+    //delete
+    deleteMeUser = ()=> {
+        const userId = this.props.user.id;
+        const config = {
+            headers:{
+                ContentType:'application/json',
+                Authorization:'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpYW1hbmlzbWVuYWEiLCJpYXQiOjE2MzEzMzEzMDAsImV4cCI6MTYzMTQxNzcwMH0.Z5p3_64MvtvAfv_HTw3HlcZLFTfhNCzsMRXudFxagZseQWeB0S8XTl_rnTXUem_hfZoSq7qzR37jba-7JEq9dA',
+            }
+        }
+        axios.get('http://localhost:8083/api/auth/delete/'+userId, config)
+            .then((response)=>{
+                console.log(response);
+                window.location.reload(false); 
+            })
+            .catch((err)=>{
+                console.log({
+                    errDeleting: err
+                })
+            })
+    }
+
+    //visualisation
+  
     render() {
         return(
             <div className='Show_user'>
@@ -24,23 +58,31 @@ class Show_user extends React.Component{
                                     </Col>
                                     <Col sm={9}>
                                         <Row className='user_username'>
-                                            {this.props.username}
+                                            {this.props.user.username}
                                         </Row>
                                         <Row className='user_nss'>
-                                            3456178992
+                                            {this.props.user.numeroSecuriteSocial}
                                         </Row>
                                     </Col>
                                 </Row>
                             </Col>
                             <Col sm={4}>
                                 <div className='action_buttons'>
-                                    <div className='btn btn-outline-success'>
-                                        visualiser
-                                    </div>
+                                    <Link to={{
+                                        pathname:'/admin/consulte_user', 
+                                        state: {
+                                            id_user:this.props.user
+                                        }
+                                        }
+                                        }>
+                                        <div className='btn btn-outline-success'>
+                                            visualiser
+                                        </div>
+                                    </Link>
                                     <div className='btn btn-outline-primary'>
                                         editer
                                     </div>
-                                    <div className='btn btn-outline-danger'>
+                                    <div className='btn btn-outline-danger' onClick={this.deleteMeUser}>
                                         supprimer
                                     </div>
                                 </div>

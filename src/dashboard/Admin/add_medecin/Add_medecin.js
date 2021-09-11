@@ -42,6 +42,13 @@ class Add_medecin extends React.Component {
     submitInformationsForm = (event)=>{
         event.preventDefault();
         console.log(this.state);
+        axios.post("http://localhost:8083/api/auth/signup", this.state)
+            .then((result)=>{
+                console.log(result)
+            })
+            .catch((err)=>{
+                console.log({errorAdding: err})
+            })
     }
     render() {
 
@@ -78,8 +85,8 @@ class Add_medecin extends React.Component {
                         <div className='selectClass'>
                             <select className="sex" name="sex" onChange={this.inputOnChange}>
                                 <option disabled selected>sexe</option>
-                                <option value='homme' >homme</option>
-                                <option value='femme'>femme</option>
+                                <option value='Homme' >homme</option>
+                                <option value='FEMME'>femme</option>
                             </select>
                             <select className="groupeSanguin" name="groupeSanguin" onChange={this.inputOnChange}>
                                 <option disabled selected>groupe sanguin</option>

@@ -1,5 +1,6 @@
 import './View_users.css'
 import React from 'react';
+import axios from 'axios';
 import List_users from './List_user';
 import Nav from 'react-bootstrap/Nav';
 
@@ -15,16 +16,55 @@ class View_users extends React.Component{
         listInfermiers:'',
     }
 
+    list_admin = [];
+    list_patient = [];
+    list_medecin = [];
+    list_infermier = [];
+
     componentDidMount = () => {
-        this.setState({
-            divElementId: 0,
-            listAdmins:['anis','issam','moh','anis','issam','moh','anis','issam','moh'],
-            listMedecins:['samir','islam','ilyas','samir','islam','ilyas','samir','islam','ilyas'],
-            listPatients:['anfel','karim','samira','samir','islam','ilyas','samir','islam','ilyas'],
-            listInfermiers:['halim','ali','oussama','halim','ali','oussama','halim','ali','oussama'],
-        })
+        // here we will make an axios get request to get all the users ! 
+        
+
+        axios.get("http://localhost:8090/gestion-compte-service/api/auth/users")
+            .then((response)=>{
+                response.data.forEach(user => {
+                    switch (user.roles[0].name) {
+                        case 'ROLE_Medecin':
+                            this.list_medecin.push(user);
+                            break;
+                        case 'ROLE_Patient':
+                            this.list_patient.push(user);
+                            break;
+                    case 'ROLE_Admin':
+                            this.list_admin.push(user);
+                            break;     
+                        case 'ROLE_Infermier':
+                            this.list_infermier.push(user);
+                            break;                       
+                    
+                        default:
+                            break;
+                    }
+                });
+            });
+
+            // console.log('response : ', response.data[2].roles[0].name)
+            //     list_medecin.push(response.data[2]);
+            //     console.log('fuck off :', list_medecin)
+
+            
+            this.setState({
+                divElementId: null,
+                listAdmins:this.list_admin,
+                listMedecins:this.list_medecin,
+                listPatients:this.list_patient,
+                listInfermiers:this.list_infermier,
+            })
     }
     
+    componentDidUpdate = ()=>{
+        console.log(this.state)
+    }
 
     clickedElement = (event)=>{
         //remove the active class
@@ -32,7 +72,6 @@ class View_users extends React.Component{
         divs.forEach(div => {
             div.classList.remove('active')
         });
-        console.log(divs);
         this.setState({
             divElementId: event.target.id
         })
@@ -43,11 +82,9 @@ class View_users extends React.Component{
     
 
     render() {
-    
-        console.log('divel : ', this.state)
         const myState = this.state;
+        console.log('my state',myState)
         function getMeUsers(divElementId) {
-            console.log(myState)
             if(divElementId==0){
                 return <List_users listUser = {myState.listAdmins}/>
             }
