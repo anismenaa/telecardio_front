@@ -5,7 +5,6 @@ import SignIn from './auth/Signin';
 import Verify from './auth/Verify';
 import Home_user from './dashboard/Home_user';
 import Home_user_medecin from './dashboard/Home_user_medecin';
-import Pdf_ordonnance from './dashboard/Medecin/dashboard/Pdf_ordonnance';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const Home = () => {

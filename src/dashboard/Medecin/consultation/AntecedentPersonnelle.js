@@ -67,9 +67,9 @@ export default function AntecedentPersonnelle() {
       medicaments :  values.medicaments
     })
     
-    let antecedentPersonnelle = values;
+    // let antecedentPersonnelle = values;
    
-    localStorage.setItem('information', JSON.stringify({...Information, antecedentPersonnelle}));
+    // localStorage.setItem('information', JSON.stringify({...Information, antecedentPersonnelle}));
 
   
   }
@@ -85,10 +85,10 @@ export default function AntecedentPersonnelle() {
       medicaments :  values.medicaments
     })
     
-    let antecedentPersonnelle = values;
-    // console.log('destract AntecedentPersonnelle', {...Information, AntecedentPersonnelle  });
-    // console.log("this is test AntecedentPersonnelle",AntecedentPersonnelle)
-    localStorage.setItem('information', JSON.stringify({...Information, antecedentPersonnelle}));
+    // let antecedentPersonnelle = values;
+    // // console.log('destract AntecedentPersonnelle', {...Information, AntecedentPersonnelle  });
+    // // console.log("this is test AntecedentPersonnelle",AntecedentPersonnelle)
+    // localStorage.setItem('information', JSON.stringify({...Information, antecedentPersonnelle}));
 
   
   }
@@ -105,10 +105,10 @@ export default function AntecedentPersonnelle() {
       medicaments :  values.medicaments
     })
     
-    let antecedentPersonnelle = values;
-    // console.log('destract AntecedentPersonnelle', {...Information, AntecedentPersonnelle  });
-    // console.log("this is test AntecedentPersonnelle",AntecedentPersonnelle)
-    localStorage.setItem('information', JSON.stringify({...Information, antecedentPersonnelle}));
+    // let antecedentPersonnelle = values;
+    // // console.log('destract AntecedentPersonnelle', {...Information, AntecedentPersonnelle  });
+    // // console.log("this is test AntecedentPersonnelle",AntecedentPersonnelle)
+    // localStorage.setItem('information', JSON.stringify({...Information, antecedentPersonnelle}));
   }
 
   const changeNbrChic = (event) => {
@@ -122,10 +122,10 @@ export default function AntecedentPersonnelle() {
       medicaments :  values.medicaments
     })
     
-    let antecedentPersonnelle = values;
-    // console.log('destract AntecedentPersonnelle', {...Information, AntecedentPersonnelle  });
-    // console.log("this is test AntecedentPersonnelle",AntecedentPersonnelle)
-    localStorage.setItem('information', JSON.stringify({...Information, antecedentPersonnelle}));
+    // let antecedentPersonnelle = values;
+    // // console.log('destract AntecedentPersonnelle', {...Information, AntecedentPersonnelle  });
+    // // console.log("this is test AntecedentPersonnelle",AntecedentPersonnelle)
+    // localStorage.setItem('information', JSON.stringify({...Information, antecedentPersonnelle}));
 
   
   }
@@ -142,9 +142,9 @@ export default function AntecedentPersonnelle() {
       medicaments :  values.medicaments
     })
     
-    let antecedentPersonnelle = values;
+    // let antecedentPersonnelle = values;
 
-    localStorage.setItem('information', JSON.stringify({...Information, antecedentPersonnelle}));
+    // localStorage.setItem('information', JSON.stringify({...Information, antecedentPersonnelle}));
   
   }
 
@@ -160,11 +160,20 @@ export default function AntecedentPersonnelle() {
       medicaments : event.target.value
     })
     
+    // let antecedentPersonnelle = values;
+
+    // localStorage.setItem('information', JSON.stringify({...Information, antecedentPersonnelle}));
+  
+  }
+
+  useEffect(() => {
+    
     let antecedentPersonnelle = values;
 
     localStorage.setItem('information', JSON.stringify({...Information, antecedentPersonnelle}));
-  
-  }
+    
+
+  },   [values]  );
 
   return (
     <React.Fragment>

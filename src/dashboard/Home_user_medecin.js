@@ -3,13 +3,13 @@ import Header from './Header';
 //admin
 import Admin_dashboard from './Admin/dashboard/Admin_dashboard';
 import Consulter_patient from './Medecin/consultation/Dossier';
+import Examen_clinique from './Medecin/examenClinique/ExamenClinique';
 import View_users from './Admin/View_users/View_users';
 import Consulte_user from './Admin/View_users/Consulte_user'
 
 //medecin 
 import Medecin_nav from './Medecin_nav';
 import Ordonnance from './Medecin/dashboard/Ordonnance'
-import Pdf_ordonnance from './Medecin/dashboard/Pdf_ordonnance';
 import { BrowserRouter as Router, Route, Switch,Redirect } from 'react-router-dom';
 
 import './Home_user.css';
@@ -32,6 +32,7 @@ class Home_user extends React.Component {
                             <Switch>
                                 <Route path='/medecin/dashboard'> <Medecin_dashboard /></Route>
                                 <Route path='/medecin/consulter_patient'> <Consulter_patient /> </Route>
+                                <Route path='/medecin/examen_clinique'> <Examen_clinique /> </Route>
                                 <Route path='/medecin/ordonnance'> <Ordonnance /> </Route>
                                 {/* <Route path='/admin/pdf'><Pdf_ordonnance/></Route> */}
                             </Switch>

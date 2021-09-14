@@ -72,8 +72,7 @@ export default function SigneCardiaque() {
       syncopeOedemes :  values.syncopeOedemes
 
     })
-    let signeCardiaque = values;
-    localStorage.setItem('information', JSON.stringify({...Information, signeCardiaque}));
+  
   }
 
   const changeDyspnée = (event) => {
@@ -88,8 +87,7 @@ export default function SigneCardiaque() {
       syncopeOedemes :  values.syncopeOedemes
 
     })
-    let signeCardiaque = values;
-    localStorage.setItem('information', JSON.stringify({...Information, signeCardiaque}));
+   
   }
 
   const changeAsthenie = (event) => {
@@ -104,8 +102,7 @@ export default function SigneCardiaque() {
       syncopeOedemes :  values.syncopeOedemes
 
     })
-    let signeCardiaque = values;
-    localStorage.setItem('information', JSON.stringify({...Information, signeCardiaque}));
+
   }
   
   const changeFatigue = (event) => {
@@ -120,8 +117,7 @@ export default function SigneCardiaque() {
       syncopeOedemes :  values.syncopeOedemes
 
     })
-    let signeCardiaque = values;
-    localStorage.setItem('information', JSON.stringify({...Information, signeCardiaque}));
+
   }
 
   
@@ -139,8 +135,7 @@ export default function SigneCardiaque() {
       syncopeOedemes :  values.syncopeOedemes
 
     })
-    let signeCardiaque = values;
-    localStorage.setItem('information', JSON.stringify({...Information, signeCardiaque}));
+    
   }
   const changeLipothymies = (event) => {
     setValues({
@@ -154,8 +149,7 @@ export default function SigneCardiaque() {
       syncopeOedemes :  values.syncopeOedemes
 
     })
-    let signeCardiaque = values;
-    localStorage.setItem('information', JSON.stringify({...Information, signeCardiaque}));
+  
   }
 
   const changeEvanouissement = (event) => {
@@ -170,8 +164,7 @@ export default function SigneCardiaque() {
       syncopeOedemes :  values.syncopeOedemes
 
     })
-    let signeCardiaque = values;
-    localStorage.setItem('information', JSON.stringify({...Information, signeCardiaque}));
+   
   }
 
   const changeS = (event) => {
@@ -186,9 +179,17 @@ export default function SigneCardiaque() {
       syncopeOedemes :  event.target.value
 
     })
+   
+  }
+  
+  useEffect(() => {
+    
     let signeCardiaque = values;
     localStorage.setItem('information', JSON.stringify({...Information, signeCardiaque}));
-  }
+    
+
+  },   [values]  );
+ 
 
   const creerDossier =() =>  {
 
@@ -226,7 +227,7 @@ export default function SigneCardiaque() {
 
   }
 
-  
+    
 
 
 

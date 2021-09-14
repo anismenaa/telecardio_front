@@ -61,8 +61,7 @@ export default function AntecedentMedicoCherigicaux() {
       familiaux:  values.familiaux,
       toxiques :  values.toxiques
     })
-    let antecedentMedicoCherigicaux = values;
-    localStorage.setItem('information', JSON.stringify({...Information, antecedentMedicoCherigicaux}));
+   
   }
 
   const changeChirurgicaux = (event) => {
@@ -73,8 +72,7 @@ export default function AntecedentMedicoCherigicaux() {
       familiaux:  values.familiaux,
       toxiques :  values.toxiques
     })
-    let antecedentMedicoCherigicaux = values;
-    localStorage.setItem('information', JSON.stringify({...Information, antecedentMedicoCherigicaux}));
+  
   }
 
   const changeAllergique = (event) => {
@@ -85,8 +83,7 @@ export default function AntecedentMedicoCherigicaux() {
       familiaux:  values.familiaux,
       toxiques :  values.toxiques
     })
-    let antecedentMedicoCherigicaux = values;
-    localStorage.setItem('information', JSON.stringify({...Information, antecedentMedicoCherigicaux}));
+  
   }
 
   const changeFamiliaux = (event) => {
@@ -97,8 +94,7 @@ export default function AntecedentMedicoCherigicaux() {
       familiaux:  event.target.value,
       toxiques :  values.toxiques
     })
-    let antecedentMedicoCherigicaux = values;
-    localStorage.setItem('information', JSON.stringify({...Information, antecedentMedicoCherigicaux}));
+    
   }
   const changeToxiques = (event) => {
     setValues({
@@ -108,10 +104,16 @@ export default function AntecedentMedicoCherigicaux() {
       familiaux:  values.familiaux,
       toxiques :  event.target.value
     })
-    let antecedentMedicoCherigicaux = values;
-    localStorage.setItem('information', JSON.stringify({...Information, antecedentMedicoCherigicaux}));
+   
   }
 
+  
+  useEffect(() => {
+    let antecedentMedicoCherigicaux = values;
+    localStorage.setItem('information', JSON.stringify({...Information, antecedentMedicoCherigicaux}));
+    
+
+  },   [values]  );
 
 
 

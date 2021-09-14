@@ -14,7 +14,6 @@ class Profile extends React.Component {
     }
 
     componentDidMount = () => {
-        console.log('myCurrent: ',this.props.currentUser)
         this.setState({
             nom: this.props.currentUser.nom,
             prenom: this.props.currentUser.prenom,

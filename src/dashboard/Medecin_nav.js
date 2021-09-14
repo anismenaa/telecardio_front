@@ -22,6 +22,12 @@ class Medecin_nav extends React.Component {
                             <span>Consulter patient</span>
                         </div>
                     </Link>
+
+                     <Link to='/medecin/examen_clinique' className='dashboard_item'>
+                        <div className="nav__item">
+                            <span>Examen clinique</span>
+                        </div>
+                    </Link>
                     
                     <Link to='/medecin/view_patients'>
                         <div className="nav__item">

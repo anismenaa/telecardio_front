@@ -2,8 +2,6 @@ import React from 'react';
 import CoeurLogo from '../../../images/ordonnance/coeur_logo.jpg';
 import List_medicament from './List_medicament';
 import jsPDF from 'jspdf';
-import SearchMedic from './SearchMedic';
-import Pdf_ordonnance from './Pdf_ordonnance';
 import {Link } from 'react-router-dom'
 
 class Ordonnance extends React.Component{

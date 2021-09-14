@@ -5,11 +5,9 @@ import TextField from '@material-ui/core/TextField';
 
 
 
-export default function PaymentForm() {
+export default function InformationBiometrique() {
   let Information = JSON.parse(localStorage.getItem('information'));
 
-
-  ///let InformationBiometrique = JSON.parse(localStorage.getItem('informationBio'));
   const [values, setValues] = React.useState({
 
     id :Information.informationBiometrique ? Information.informationBiometrique.id: "",
@@ -28,42 +26,36 @@ export default function PaymentForm() {
 
 
   const changeTaille = (event) => {
-    //console.log(event.target.value)
-    //values = event.target.value
+  
     setValues({
       taille : event.target.value,
       poids: values.poids,
       id:values.id
 
     })
-    //const {informationBiometrique}=Information;
-    let informationBiometrique = values;
-    console.log('destract', {...Information, informationBiometrique  });
-    console.log("this is test",informationBiometrique)
-    localStorage.setItem('information', JSON.stringify({...Information, informationBiometrique}));
-   
-
-
   }
-   
 
   
   const changePoids = (event) => {
-    //console.log(event.target.value)
-    //values = event.target.value
+ 
     setValues({
       taille : values.taille,
       poids: event.target.value,
       id:values.id
 
     })
+  
+  }
+
+  useEffect(() => {
     
     let informationBiometrique = values
     console.log('destract', {...Information, informationBiometrique  })
 
     localStorage.setItem('information', JSON.stringify({...Information, informationBiometrique}));
-  
-  }
+    
+
+  },   [values]  );
 
 
 
