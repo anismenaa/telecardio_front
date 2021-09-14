@@ -89,10 +89,6 @@ class Signin extends React.Component {
             return(
                 <Redirect to={{
                     pathname: "/medecin",
-                    state: {
-                        accessToken: token,
-                        data: data
-                    }
                 }}/>
             );
         }

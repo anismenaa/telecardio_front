@@ -25,10 +25,11 @@ class Show_user extends React.Component{
     //delete
     deleteMeUser = ()=> {
         const userId = this.props.user.id;
+        const token = JSON.parse(localStorage.getItem('currentUser')).token;
         const config = {
             headers:{
                 ContentType:'application/json',
-                Authorization:'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpYW1hbmlzbWVuYWEiLCJpYXQiOjE2MzE2MTM1NTUsImV4cCI6MTYzMTY5OTk1NX0.YXuaXBFJ9mkq940QacSOSDwg2lxkiMFiBBROnc1FzwyJcND5WAiAty5GVlmGJaap1fpsdeY_Z8bIzHzNjEc9Ng',
+                Authorization:'Bearer '+token,
             }
         }
         axios.get('http://localhost:8083/api/auth/delete/'+userId, config)

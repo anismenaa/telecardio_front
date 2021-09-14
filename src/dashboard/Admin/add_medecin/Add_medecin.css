@@ -24,7 +24,7 @@
     display: flex;
     justify-content: space-around;
 }
-select{
+.selectClass select{
     background-color: #515782;
     padding: 10px;
     color: white;

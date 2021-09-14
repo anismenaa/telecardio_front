@@ -82,9 +82,9 @@ const Consulte_user = () => {
                         </select>
                         <select className="role" name="role" value={state.roles[0].name} onChange={inputOnChange}>
                             <option disabled selected>role</option>
-                            <option value='admin' >admin</option>
-                            <option value='medecin'>medecin</option>
-                            <option value='infermier'>infermier</option>
+                            <option value='ROLE_Admin' >admin</option>
+                            <option value='ROLE_Medecin'>medecin</option>
+                            <option value='ROLE_Infermier'>infermier</option>
                         </select>
                     </div>
                     <div className='connexion_information'>

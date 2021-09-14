@@ -17,7 +17,17 @@ class Home_user extends React.Component {
 
     render() {
         console.log('rani hna')
-        const currentUser_information= JSON.parse(localStorage.getItem('currentUser'))
+        var currentUser_information=null;
+        if (localStorage.getItem('currentUser') != null ) {
+            currentUser_information= JSON.parse(localStorage.getItem('currentUser'))
+            if (currentUser_information.roles[0] != 'ROLE_Admin') {
+                console.log(currentUser_information.roles[0]);
+                return (<Redirect  to={{
+                    pathname: "/home",
+                }}/>)
+            }
+
+        }
         return (
             <div className="Home_user">
                 <Header />

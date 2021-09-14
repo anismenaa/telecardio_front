@@ -23,10 +23,15 @@ class Admin_nav extends React.Component {
                             <span>Ajouter médecin</span>
                         </div>
                     </Link>
-                    
-                    <Link to='/admin/view_users'>
+                
+                    <Link to='/admin/view_users' className='dashboard_item'>
                         <div className="nav__item">
                             <a><span>Liste médecins</span></a>
+                        </div>
+                    </Link>
+                    <Link to='/admin/statistics' className='dashboard_item'>
+                        <div className="nav__item">
+                            <a><span>Statistics</span></a>
                         </div>
                     </Link>
                 </div>

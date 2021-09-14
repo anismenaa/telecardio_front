@@ -9,4 +9,6 @@
 }
 .userRight_section {
     width: 80%;
+    height: 100vh;
+    overflow: scroll;
 }

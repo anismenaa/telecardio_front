@@ -8,7 +8,7 @@ class Medecin_nav extends React.Component {
         return (
             <div className="Admin_nav">
                 <div className="profile__section">
-                    <Profile />
+                    <Profile currentUser = {this.props.currentUser}/>
                 </div>
                 <div className='navigation__items'>
                     <Link to='/medecin/dashboard' className='dashboard_item'>
