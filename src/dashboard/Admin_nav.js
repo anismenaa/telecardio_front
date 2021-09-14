@@ -4,11 +4,12 @@ import Profile from './Profile';
 import {Link} from 'react-router-dom';
 
 class Admin_nav extends React.Component {
+   
     render() {
         return (
             <div className="Admin_nav">
                 <div className="profile__section">
-                    <Profile />
+                    <Profile currentUser = {this.props.currentUser}/>
                 </div>
                 <div className='navigation__items'>
                     <Link to='/admin/dashboard' className='dashboard_item'>

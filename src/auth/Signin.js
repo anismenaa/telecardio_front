@@ -77,14 +77,11 @@ class Signin extends React.Component {
 
     render() {
         const {redirect, token, data } = this.state;
+        localStorage.setItem('currentUser', JSON.stringify(data))
         if(redirect && data.roles[0]==="ROLE_Admin") {
             return(
                 <Redirect to={{
                     pathname: "/admin/dashboard",
-                    state: {
-                        accessToken: token,
-                        data: data
-                    }
                 }}/>
             );
         }

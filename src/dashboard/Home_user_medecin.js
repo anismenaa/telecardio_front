@@ -17,13 +17,23 @@ import Medecin_dashboard from './Medecin/dashboard/Medecin_dashboard';
 
 class Home_user extends React.Component {
 
-    
-
+    state = {
+        currentUser_information: ''
+    }
     componentDidMount = () => {
-        console.log(this.props.location.state.data)
+        if (localStorage.getItem('currentUser') !== null) {
+            this.setState({
+                currentUser_information: localStorage.getItem('currentUser')
+            })
+        }else {
+            this.setState({
+                currentUser_information : this.props.location.state.data
+            })
+            localStorage.setItem('currentUser', JSON.stringify(this.state.currentUser_information));
+        }
+      
         // we add the current user to the localStorage
-        const currentUser_information = this.props.location.state.data
-        localStorage.setItem('currentUser', JSON.stringify(currentUser_information));
+        
     }
 
     render() {

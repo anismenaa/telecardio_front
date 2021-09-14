@@ -14,13 +14,12 @@ class Profile extends React.Component {
     }
 
     componentDidMount = () => {
-        const currentUser_information = JSON.parse(localStorage.getItem('currentUser'));
-        console.log('profile infroamtiON : ', currentUser_information)
+        console.log('myCurrent: ',this.props.currentUser)
         this.setState({
-            nom: currentUser_information.nom,
-            prenom: currentUser_information.prenom,
-            nomComplet: currentUser_information.nom+' '+currentUser_information.prenom,
-            role: currentUser_information.roles[0]
+            nom: this.props.currentUser.nom,
+            prenom: this.props.currentUser.prenom,
+            nomComplet: this.props.currentUser.nom+' '+this.props.currentUser.prenom,
+            role: this.props.currentUser.roles[0]
         })
        
     }

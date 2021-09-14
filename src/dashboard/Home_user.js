@@ -14,20 +14,16 @@ import { BrowserRouter as Router, Route, Switch,Redirect } from 'react-router-do
 import './Home_user.css';
 
 class Home_user extends React.Component {
-    componentDidMount = () => {
-        console.log(this.props.location.state.data)
-        // we add the current user to the localStorage
-        const currentUser_information = this.props.location.state.data
-        localStorage.setItem('currentUser', JSON.stringify(currentUser_information));
-    }
+
     render() {
         console.log('rani hna')
+        const currentUser_information= JSON.parse(localStorage.getItem('currentUser'))
         return (
             <div className="Home_user">
                 <Header />
                 <div className="sections">
                     <div className="userLeft_section">
-                        <Admin_nav/>
+                        <Admin_nav currentUser = {currentUser_information}/>
                     </div>
                     <div className="userRight_section">
                             <Switch>
