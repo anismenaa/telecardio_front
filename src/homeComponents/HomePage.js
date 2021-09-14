@@ -11,24 +11,24 @@ class HomePage extends React.Component {
     
     render() {
         return(
-            <div className="home-container">
+            <div className="home-container_homepage">
                 <Nav />
-                <div className="background-image">
+                <div className="background-image_homepage">
                     <img src={adnImage} alt="background" />
-                    <div className="header">
+                    <div className="header_homepage">
                         <h1>Bienvenue sur notre plateforme</h1>
                         <h2>TELECARDIO</h2>
-                        <Link to="/signup" className="create-doc-patient">
-                            <a className="create-doc-patient-btn">Créer son propre dossier médical</a>
+                        <Link to="/signup" className="create-doc-patient_homepage">
+                            <a className="create-doc-patient-btn_homepage">Créer son propre dossier médical</a>
                         </Link>
                         
                     </div>
                 </div>
-                <div className="ourServices">
-                    <div className="title">
+                <div className="ourServices_homepage">
+                    <div className="title_homepage">
                         <p>Nos Services</p>
                     </div>
-                    <div className="services-items">
+                    <div className="services-items_homepage">
                         <Service 
                             srcName="../images/services/service1.jpeg"
                             cardTitle="notre service 1" 
@@ -47,8 +47,8 @@ class HomePage extends React.Component {
                     </div>
                 </div>
 
-                <div className="contact">
-                    <div className="title">
+                <div className="contact_homepage">
+                    <div className="title_homepage">
                         <p>Nous contacter</p>
                     </div>
                     <Contact />

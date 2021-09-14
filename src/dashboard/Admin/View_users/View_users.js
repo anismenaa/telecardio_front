@@ -45,8 +45,14 @@ class View_users extends React.Component{
                         default:
                             break;
                     }
+                    console.log('this is my user : ',user)
                 });
-            });
+            })
+            .catch((err)=>{
+                console.log({
+                    errorGettingAllUsers : err
+                })
+            })
 
             // console.log('response : ', response.data[2].roles[0].name)
             //     list_medecin.push(response.data[2]);
@@ -70,13 +76,13 @@ class View_users extends React.Component{
         //remove the active class
         const divs = document.querySelectorAll('.switch__btn');
         divs.forEach(div => {
-            div.classList.remove('active')
+            div.classList.remove('active_')
         });
         this.setState({
             divElementId: event.target.id
         })
         const div = document.getElementById(event.target.id)
-        div.classList.add('active')
+        div.classList.add('active_')
     }
 
     
@@ -104,7 +110,7 @@ class View_users extends React.Component{
             
             <div className='View_users'>
                 <div className='switch_buttons'>
-                        <div className='switch__btn btn btn-outline-secondary active rounded-0' id='0' onClick={this.clickedElement}>
+                        <div className='switch__btn btn btn-outline-secondary rounded-0' id='0' onClick={this.clickedElement}>
                             Admins
                         </div>
                     

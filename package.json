@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
+    "@react-pdf/renderer": "^2.0.19",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -14,11 +15,16 @@
     "emailjs-com": "^3.2.0",
     "faker": "^5.5.3",
     "global": "^4.4.0",
+    "jspdf": "^2.4.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.0-beta.6",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.5",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-to-pdf": "0.0.14",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

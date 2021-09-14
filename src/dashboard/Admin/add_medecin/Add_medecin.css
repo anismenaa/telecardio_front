@@ -4,16 +4,17 @@
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;
 }
-.Add_medecin {
+.Add_medecin, .Consulte_user {
     padding: 50px;
-    border: 2px solid rgb(167, 161, 161);
-    border-radius: 29px;
-    width: 80%;
-    height: 100%;
+    border: none;
+    width: 95%;
+    height: 600px;
     margin: auto;
     margin-top: 5%;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-   
+    overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
 }
 
 .selectClass{
@@ -33,9 +34,11 @@ select{
 
 input{
     outline: none;
+    border: none;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 input:hover{
-    transform: scale(1.1);
+    transform: scale(1.08);
 }
 
 .name{
@@ -50,8 +53,7 @@ input:hover{
 
 .nom>input{
     width: 100%;
-    border: none;
-    border-bottom: 3px solid #707070;
+    padding: 8px;
 }
 
 .prenom{
@@ -60,8 +62,7 @@ input:hover{
 
 .prenom>input{
     width: 100%;
-    border: none;
-    border-bottom: 3px solid #707070;
+    padding: 8px;
 }
 
 .naissance{
@@ -75,8 +76,7 @@ input:hover{
 }
 .date_naissance>input{
     width: 100%;
-    border: none;
-    border-bottom: 3px solid #707070;
+    padding: 8px;
 }
 
 .lieu_naissance{
@@ -85,8 +85,7 @@ input:hover{
 
 .lieu_naissance>input{
     width: 100%;
-    border: none;
-    border-bottom: 3px solid #707070;
+    padding: 8px;
 }
 
 .address{
@@ -96,8 +95,7 @@ input:hover{
 
 .address>input{
     width: 100%;
-    border: none;
-    border-bottom: 3px solid #707070;
+    padding: 8px;
 }
 
 
@@ -105,10 +103,8 @@ input:hover{
 
 
 .connexion_information{
-    border: 2px solid rgb(167, 161, 161);
-    border-radius: 50px;
-    box-shadow: rgba(0, 0, 0, 0.24) 10px 10px 8px;
-    padding: 20px;
+    border:none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;    padding: 20px;
     margin-bottom: 20px;
 }
 
@@ -119,8 +115,7 @@ input:hover{
 }
 .username>input{
     width: 100%;
-    border: none;
-    border-bottom: 3px solid #707070;
+    padding: 8px;
 }
 .email{
     width: 80%;
@@ -129,8 +124,7 @@ input:hover{
 }
 .email>input{
     width: 100%;
-    border: none;
-    border-bottom: 3px solid #707070;
+    padding: 8px;
 }
 .mot_de_passe{
     width: 80%;
@@ -138,8 +132,7 @@ input:hover{
 }
 .mot_de_passe>input{
     width: 100%;
-    border: none;
-    border-bottom: 3px solid #707070;
+    padding: 8px;
 }
 
 .btn_actions{
@@ -149,7 +142,6 @@ input:hover{
 
 button{
     width: 20%;
-    border-radius: 40px;
     padding: 5px;
 }
 

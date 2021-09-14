@@ -28,7 +28,7 @@ class Show_user extends React.Component{
         const config = {
             headers:{
                 ContentType:'application/json',
-                Authorization:'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpYW1hbmlzbWVuYWEiLCJpYXQiOjE2MzEzMzEzMDAsImV4cCI6MTYzMTQxNzcwMH0.Z5p3_64MvtvAfv_HTw3HlcZLFTfhNCzsMRXudFxagZseQWeB0S8XTl_rnTXUem_hfZoSq7qzR37jba-7JEq9dA',
+                Authorization:'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpYW1hbmlzbWVuYWEiLCJpYXQiOjE2MzE2MTM1NTUsImV4cCI6MTYzMTY5OTk1NX0.YXuaXBFJ9mkq940QacSOSDwg2lxkiMFiBBROnc1FzwyJcND5WAiAty5GVlmGJaap1fpsdeY_Z8bIzHzNjEc9Ng',
             }
         }
         axios.get('http://localhost:8083/api/auth/delete/'+userId, config)

@@ -5,6 +5,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './css/auth.css';
 
+
+
 class SignUp extends React.Component {
 
     constructor(props) {
@@ -15,6 +17,7 @@ class SignUp extends React.Component {
         this.patientChange= this.patientChange.bind(this);
         this.submitPatientInformations = this.submitPatientInformations.bind(this);
     }
+
 
     initialState = {
         username:'',
@@ -88,8 +91,9 @@ class SignUp extends React.Component {
                         <i className="fas fa-envelope"></i><input type="email" placeholder="email" name="email" value={email} onChange={this.patientChange} autoComplete="off" required/><br/>
                         <i className="fas fa-birthday-cake"></i><input type="date" name="dateNaissance"  value={dateNaissance} onChange={this.patientChange} autoComplete="off" required/><br/>
                         <i className="fas fa-user"></i><input type="text" placeholder="lieuNaissance" name="lieuNaissance" value={lieuNaissance} onChange={this.patientChange} autoComplete="off" required/><br/>
-
-                        <i className="fas fa-phone-volume"></i><input type="text" placeholder="numero de tel" name="numTelephone" value={numTelephone} onChange={this.patientChange} autoComplete="off" required />
+                        <i className="fas fa-shield-check"></i><input type="text" placeholder="numero de sécurité" name="numeroSecuriteSocial" value={numeroSecuriteSocial} onChange={this.patientChange} autoComplete="off" required/><br/>
+                        <i className="fas fa-unlock"></i><input type="password" placeholder="password" name="password" value={password} onChange={this.patientChange} autoComplete="off" required/><br/>
+                        <i className="fas fa-phone-volume"></i><input type="text" placeholder="numero de tel" name="numTelephone" value={numTelephone} onChange={this.patientChange} autoComplete="off" required /><br/>
                         <div className="sex-choice">
                             <select name="sex" value={sex} onChange={this.patientChange} required>
                                 <option disabled selected>sex</option>
@@ -110,9 +114,8 @@ class SignUp extends React.Component {
                                     <option value='AB-'>AB-</option>
                             </select>
                         </div>
-                        <i className="fas fa-shield-check"></i><input type="text" placeholder="numero de sécurité" name="numeroSecuriteSocial" value={numeroSecuriteSocial} onChange={this.patientChange} autoComplete="off" required/><br/>
-                        <i className="fas fa-unlock"></i><input type="password" placeholder="password" name="password" value={password} onChange={this.patientChange} autoComplete="off" required/>
-                        <button type="submit" className="signup-btn ">valider</button>
+                        
+                        <button type="submit" className="signup-btn">valider</button>
                     </form>
                     <Link to="/signin">
                         <button type="button" className="signin-btn">s'authentifier</button>

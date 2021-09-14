@@ -26,6 +26,8 @@ class Add_medecin extends React.Component {
         role:[]
     }
 
+    
+
     inputOnChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
@@ -119,11 +121,31 @@ class Add_medecin extends React.Component {
                         </div>
                         <div className='btn_actions'>
                             <button type="reset" className='reset_btn'>Reset</button>
-                            <button type="submit" className='validate_btn'>Valider</button>
+                            <button type="button" className='validate_btn' data-bs-toggle="modal" data-bs-target="#exampleModal">Valider</button>
                         </div>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Etes vous sur ?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            en cliquant sur "enregistrer" vous aller confirmer vos saisi .
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">enregistrer</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
                     </form>
                 </div>
+                
             </div>
+
+            
             
         );
     };

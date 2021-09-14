@@ -28,6 +28,12 @@ class Medecin_nav extends React.Component {
                             <a><span>Liste patients</span></a>
                         </div>
                     </Link>
+
+                    <Link to='/medecin/ordonnance' className='dashboard_item'>
+                        <div className="nav__item">
+                            <span>Ordonnance</span>
+                        </div>
+                    </Link>
                 </div>
             </div>
         );

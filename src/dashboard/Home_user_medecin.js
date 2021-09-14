@@ -2,17 +2,30 @@ import React from 'react';
 import Header from './Header';
 //admin
 import Admin_dashboard from './Admin/dashboard/Admin_dashboard';
-import Add_medecin from './Admin/add_medecin/Add_medecin';
+import Consulter_patient from './Medecin/consultation/Dossier';
 import View_users from './Admin/View_users/View_users';
 import Consulte_user from './Admin/View_users/Consulte_user'
 
 //medecin 
-import Medecin_nav from './Medecin_nav'
+import Medecin_nav from './Medecin_nav';
+import Ordonnance from './Medecin/dashboard/Ordonnance'
+import Pdf_ordonnance from './Medecin/dashboard/Pdf_ordonnance';
 import { BrowserRouter as Router, Route, Switch,Redirect } from 'react-router-dom';
 
 import './Home_user.css';
+import Medecin_dashboard from './Medecin/dashboard/Medecin_dashboard';
 
 class Home_user extends React.Component {
+
+    
+
+    componentDidMount = () => {
+        console.log(this.props.location.state.data)
+        // we add the current user to the localStorage
+        const currentUser_information = this.props.location.state.data
+        localStorage.setItem('currentUser', JSON.stringify(currentUser_information));
+    }
+
     render() {
         console.log('rani hna')
         return (
@@ -24,10 +37,10 @@ class Home_user extends React.Component {
                     </div>
                     <div className="userRight_section">
                             <Switch>
-                                <Route path='/admin/dashboard'> <Admin_dashboard /></Route>
-                                <Route path='/admin/add_medecin'> <Add_medecin /> </Route>
-                                <Route path='/admin/view_users'><View_users /></Route>
-                                <Route path='/admin/consulte_user'><Consulte_user /></Route>
+                                <Route path='/medecin/dashboard'> <Medecin_dashboard /></Route>
+                                <Route path='/medecin/consulter_patient'> <Consulter_patient /> </Route>
+                                <Route path='/medecin/ordonnance'> <Ordonnance /> </Route>
+                                {/* <Route path='/admin/pdf'><Pdf_ordonnance/></Route> */}
                             </Switch>
                         
                     </div>

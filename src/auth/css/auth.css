@@ -71,6 +71,15 @@
 }
 
 /* signin */
+
+.rightSide-section .signup-btn{
+    width: 50%;
+    border-radius: 50px;
+    margin-top: 2%;
+    background-color: rgb(18, 55, 177);
+    color: #fff;
+    border: none;
+}
 .avatar-auth{
     text-align: center;
 

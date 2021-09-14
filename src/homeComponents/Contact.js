@@ -31,11 +31,11 @@ const onSubmitContactForm = (event) =>{
 
 const Contact = () => {
     return (
-        <div className="contact-form">
+        <div className="contact-form_homepage">
             <form onSubmit={onSubmitContactForm}>
                 <input type="email" placeholder="your email" /><br/>
                 <textarea placeholder="write your comment here ..." rows="4" cols="50" /><br/>
-                <button type="submit" className="bg-dark">submit</button>
+                <button type="submit" className="_homepage bg-dark">submit</button>
             </form>
         </div>
     );
