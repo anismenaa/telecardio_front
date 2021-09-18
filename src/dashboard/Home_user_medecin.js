@@ -10,8 +10,9 @@ import Consulte_user from './Admin/View_users/Consulte_user'
 //medecin 
 import Medecin_nav from './Medecin_nav';
 import Ordonnance from './Medecin/dashboard/Ordonnance'
+import SciChartText from './Medecin/dashboard/SciChartText';
 import { BrowserRouter as Router, Route, Switch,Redirect } from 'react-router-dom';
-
+import Afficher_rdvs from './Medecin/rdv_gestion/Afficher_rdvs';
 import './Home_user.css';
 import Medecin_dashboard from './Medecin/dashboard/Medecin_dashboard';
 
@@ -34,6 +35,8 @@ class Home_user extends React.Component {
                                 <Route path='/medecin/consulter_patient'> <Consulter_patient /> </Route>
                                 <Route path='/medecin/examen_clinique'> <Examen_clinique /> </Route>
                                 <Route path='/medecin/ordonnance'> <Ordonnance /> </Route>
+                                <Route path='/medecin/ecg_graph'> <SciChartText /> </Route>
+                                <Route path='/medecin/afficher_rdvs'> <Afficher_rdvs /> </Route>
                                 {/* <Route path='/admin/pdf'><Pdf_ordonnance/></Route> */}
                             </Switch>
                         

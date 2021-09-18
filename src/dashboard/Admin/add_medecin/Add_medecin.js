@@ -40,6 +40,10 @@ class Add_medecin extends React.Component {
            console.log('my states : ', fields)
             axios.post("http://localhost:8083/api/auth/signup",fields)
                 .then((result)=>{
+                    alert('action terminée.')
+                    this.setState({
+                        ...{}
+                    })
                     console.log(result)
                 
                 })

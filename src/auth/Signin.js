@@ -23,6 +23,7 @@ class Signin extends React.Component {
         password: '',
         token:'',
         data:{},
+        enabled: false,
         redirect: false,
     }
 
@@ -37,16 +38,27 @@ class Signin extends React.Component {
         // and now let's post this informations to the server
         axios.post("http://localhost:8083/api/auth/signin", signInPatientInfos)
             .then(response => {
-                alert("done my bro, you can see you medical doc")
+               
                 console.log(response);
                 // get our token from the response
                 this.data = response.data;
                 const accessToken = response.data.accessToken;
-                this.setState({
-                    redirect: true,
-                    token: accessToken,
-                    data: this.data
-                })
+                if (response.data.enabled == 0) {
+                    alert("veuillez verifier votre email.")
+                    this.setState({
+                        ...this.state,
+                        enabled: false,
+                    })
+                }
+                else {
+                    alert("done my bro, you can see you medical doc")
+                    this.setState({
+                        enabled: true,
+                        redirect: true,
+                        token: accessToken,
+                        data: this.data
+                    })
+                }
                
             })
             .catch(err => {
@@ -76,23 +88,33 @@ class Signin extends React.Component {
     }
 
     render() {
-        const {redirect, token, data } = this.state;
-        localStorage.setItem('currentUser', JSON.stringify(data))
-        if(redirect && data.roles[0]==="ROLE_Admin") {
-            return(
-                <Redirect to={{
-                    pathname: "/admin/dashboard",
-                }}/>
-            );
-        }
-        if(redirect && data.roles[0]==="ROLE_Medecin") {
-            return(
-                <Redirect to={{
-                    pathname: "/medecin",
-                }}/>
-            );
-        }
+      
+            const {redirect, token, data } = this.state;
+            localStorage.setItem('currentUser', JSON.stringify(data))
+            if(redirect && data.roles[0]==="ROLE_Admin") {
+                return(
+                    <Redirect to={{
+                        pathname: "/admin/dashboard",
+                    }}/>
+                );
+            }
+            if(redirect && data.roles[0]==="ROLE_Medecin") {
+                return(
+                    <Redirect to={{
+                        pathname: "/medecin",
+                    }}/>
+                );
+            }
 
+            if(redirect && data.roles[0]==="ROLE_Patient") {
+                return(
+                    <Redirect to={{
+                        pathname: "/patient",
+                    }}/>
+                );
+            }
+
+        
         
         return(
             <div className="signIn-container">
