@@ -18,8 +18,9 @@ class Show_user extends React.Component{
     }
 
 
+    
     componentDidMount = ()=> {
-        console.log(this.props.user)
+        console.log('finaleee :',this.props)
     }
 
     //delete
@@ -44,9 +45,55 @@ class Show_user extends React.Component{
             })
     }
 
+    approuverRdv = () => {
+        console.log('approuvement ...')
+        console.log(this.props.user)
+        axios.put("http://localhost:8084/approve-rdv/"+this.props.user.appointment_id)
+            .then((res)=>{
+                console.log(res);
+                alert('rdv approuvé')
+                this.setState({
+                    ...this.state,
+                    reload: true
+                })
+                window.location.reload(false); 
+            })
+    }
+
+    refuseRdv = () => {
+        console.log('disapprouvement ...')
+        console.log(this.props.user)
+        axios.put("http://localhost:8084/refuse-rdv/"+this.props.user.appointment_id)
+            .then((res)=>{
+                console.log(res);
+                alert('rdv disapprouvé')
+                this.setState({
+                    ...this.state,
+                    reload: true
+                })
+                window.location.reload(false); 
+            })
+    }
+    btnHelper =()=>{
+      
+        if(this.props.idDiv==1){
+            return(
+                <div className='action_buttons' >
+                        <div className='btn btn-outline-success' onClick={this.approuverRdv}>
+                            approuver
+                        </div>
+                        <div className='btn btn-outline-danger' onClick={this.refuseRdv}>
+                            disapprouver
+                        </div>
+                </div>
+            )
+        } 
+    }
+
     //visualisation
   
     render() {
+        
         return(
             <div className='Show_user'>
                 <ListGroup.Item as="li"className='one_user_container'>
@@ -68,12 +115,7 @@ class Show_user extends React.Component{
                                 </Row>
                             </Col>
                             <Col sm={4}>
-                                <div className='action_buttons'>
-                                        <div className='btn btn-outline-success'>
-                                            approuver
-                                        </div>
-                                   
-                                </div>
+                                {this.btnHelper()}
                             </Col>
                         </Row>
                     </Container>
