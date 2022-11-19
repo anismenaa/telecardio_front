@@ -45,6 +45,11 @@ class Medecin_nav extends React.Component {
                             <span>ecg</span>
                         </div>
                     </Link>
+                    <Link to='/medecin/chartrdv' className='dashboard_item'>
+                        <div className="nav__item">
+                            <span>chart</span>
+                        </div>
+                    </Link>
                 </div>
             </div>
         );

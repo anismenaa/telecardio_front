@@ -5,7 +5,10 @@ import Chart from 'react-google-charts'
 import axios from 'axios'
 import { PieChart } from 'react-minimal-pie-chart';
 import { ThreeSixtyOutlined } from '@material-ui/icons';
-
+import RdvStatistics from './RdvStatistic';
+import Ecg from './Ecg';
+import SexStat from './SexStat';
+import AgeStat from './AgeStat';
 
 class Medecin_dashboard extends React.Component {
 
@@ -68,84 +71,12 @@ class Medecin_dashboard extends React.Component {
         },
         ages: [],
         agesStatistics: [],
+        
     }
 
-    getMeGenderStatistics = (myUsers) => {
-        myUsers.forEach(user => {
-            if( user.roles[0].name==='ROLE_Patient'){
-                if(user.sex === 'Homme') {
-                    this.setState({
-                        ...this.state,
-                        nbhomme : this.state.nbhomme + 1
-                    }) 
-                } else {
-                    this.setState({
-                        ...this.state,
-                        nbfemme: this.state.nbfemme + 1
-                    })
-                }
-            }
-        });
-        console.log(this.state)
-        // calculate the percentage of each gender
-        this.setState({
-            ...this.state,
-            pourcentage: {
-                hommePer: (this.state.nbhomme * 100)/ (this.state.nbhomme+this.state.nbfemme),
-                femmePer: (this.state.nbfemme * 100)/ (this.state.nbhomme+this.state.nbfemme)
-            }
-        })
-    }
+    
 
-
-    ages = [];
-    agesStat = [];
-    agesStatFinal = [['Age', 'nombre']];
-    getMeAgeStatistics = (myUsers) => {
-       
-        myUsers.forEach(user => {
-            if(user.roles[0].name === 'ROLE_Patient'){
-                //we calculate the ages
-                const sysDate = Number((new Date().toISOString().slice(0, 10)).substring(0, 4));
-                const userYearOfBirth = Number((user.dateNaissance).substring(0, 4))
-                const age = sysDate-userYearOfBirth;
-                this.ages.push(age)
-            }
-        })
-        console.log(this.ages)
-        this.ages.forEach(age_=>{
-                const result = (this.ages.filter(age => age==age_)).length;
-                this.agesStat.push([age_, result]) 
-        })
-        //we remove l occurrence 
-        this.agesStat.forEach(ages => {
-            const oneAge = ages[0]
-            console.log('....', this.agesStatFinal)
-            if(!this.verifyAgeExist(oneAge)) {
-                this.agesStatFinal.push(ages)
-            }
-        })
-        console.log(this.agesStat)
-        this.setState({
-            ...this.state,
-            agesStatistics: this.agesStatFinal
-        })
-
-        console.log('state final : ', this.state)
-        console.log('agesState final : ', this.agesStatFinal)
-    }
-
-    verifyAgeExist = (age) => {
-        let i = 0;
-        let found = false;
-        while (i<this.agesStatFinal.length){
-            if(age == this.agesStatFinal[i][0]){
-                found = true;
-            }
-            i++
-        }
-        return found
-    }
+    
 
     getMeNumberPatientPerCritereStat = async(users) => {
         console.log('these are mine : ', users)
@@ -156,14 +87,21 @@ class Medecin_dashboard extends React.Component {
         
     }
 
+    getMeAppoinementByMonth = async() => {
+        const doc_id = JSON.parse(localStorage.getItem('currentUser')).id;
+        // get all the appoinements validated of the current medecin
+        const rdvs_medecin = (await axios.get('http://localhost:8084/get-new-appointment/'+doc_id)).data;
+        
+    }
     componentDidMount = async()=> {
         //we gotta get all the users and then calculate the % 
         const response = await axios.get('http://localhost:8090/gestion-compte-service/api/auth/users');
         const numberOfUsers = response.data.length;
         const myUsers = response.data;
-        this.getMeGenderStatistics(myUsers)
-        this.getMeAgeStatistics(myUsers)
+        // this.getMeGenderStatistics(myUsers)
+        // this.getMeAgeStatistics(myUsers)
         this.getMeNumberPatientPerCritereStat(myUsers)
+        //this.getMeAppoinementByMonth();
         // calculate the age 
         console.log('date of today : ', new Date().toISOString().slice(0, 10), ' birthday : ', myUsers[0].dateNaissance)
     }
@@ -184,44 +122,22 @@ class Medecin_dashboard extends React.Component {
                     </div>
                     <div className='medecin_patient_statistics'>
                         <div className='gender_statistics' style={this.styles.gender_statistics}>
-                            <Chart
-                                width={'400px'}
-                                height={'400px'}
-                                chartType="PieChart"
-                                loader={<div>Loading Chart</div>}
-                                data={[
-                                ['sexe', 'Popularity'],
-                                ['homme', this.state.pourcentage.hommePer],
-                                ['femme', this.state.pourcentage.femmePer],
-                                
-                                ]}
-                                options={{
-                                title: 'Statistic sur le genre',
-                                //sliceVisibilityThreshold: 0.05, // 20%
-                                }}
-                                rootProps={{ 'data-testid': '7' }}
-
-                                className='gender_chart'
-                                />
+                            <SexStat />
                         </div>
                     </div>
                </div>
                
                <div style={this.styles.gender_statistics}>
-                    <Chart
-                        width={'100%'}
-                        height={'300px'}
-                        chartType="ScatterChart"
-                        loader={<div>Loading Chart</div>}
-                        data={this.state.agesStatistics}
-                        options={{
-                            title: 'nombre de patient pour chaque age',
-                            hAxis: { title: 'Age', minValue: 20, maxValue: 80 },
-                            vAxis: { title: 'nombre', minValue: 0, maxValue: 5 },
-                            legend: 'none',
-                        }}
-                        rootProps={{ 'data-testid': '1' }}
-                    />              
+                    <AgeStat />
+               </div>
+               
+               
+               <div>
+                   <RdvStatistics/>
+               </div>
+
+               <div>
+                   <Ecg />
                </div>
             </div>
         );

@@ -4,7 +4,9 @@ import { Container, Row, Col, Image, Button} from 'react-bootstrap';
 import ListGroup from 'react-bootstrap/ListGroup'
 import Faker from 'faker';
 import axios from 'axios';
-import { Link, Redirect } from 'react-router-dom';
+import EditRdv from './EditRdv';
+import { Redirect, Link } from 'react-router-dom';
+
 
 class Show_user extends React.Component{
 
@@ -12,6 +14,7 @@ class Show_user extends React.Component{
         super(props);
 
         this.state = {
+            edit_btn_clicked: false,
             reload: 'false'
         }
     }
@@ -22,47 +25,34 @@ class Show_user extends React.Component{
         console.log('finaleee :',this.props)
     }
 
+    //delete
+ 
 
-    approuverRdv = () => {
-        console.log('approuvement ...')
-        console.log(this.props.user)
-        axios.put("http://localhost:8084/approve-rdv/"+this.props.user.appointment_id)
-            .then((res)=>{
-                console.log(res);
-                alert('rdv approuvé')
-                this.setState({
-                    ...this.state,
-                    reload: true
-                })
-                window.location.reload(false); 
-            })
-    }
+    editRdv = () => {
+        // here we will edit the rdv
+        alert('you clicked the edit btn'+this.props.user.appointment_id);
 
-    refuseRdv = () => {
-        console.log('disapprouvement ...')
-        console.log(this.props.user)
-        axios.put("http://localhost:8084/refuse-rdv/"+this.props.user.appointment_id)
-            .then((res)=>{
-                console.log(res);
-                alert('rdv disapprouvé')
-                this.setState({
-                    ...this.state,
-                    reload: true
-                })
-                window.location.reload(false); 
-            })
+        this.setState({
+            ...this.state,
+            edit_btn_clicked: true,
+        })
     }
     btnHelper =()=>{
-      
+        console.log('my fucking props', this.props)
         if(this.props.idDiv==1){
             return(
                 <div className='action_buttons' >
-                        <div className='btn btn-outline-success' onClick={this.approuverRdv}>
-                            approuver
+                    <Link to={{
+                        pathname:'/patient/editer_rdv',
+                        state: {
+                            rdvInfo: this.props.user
+                        }
+                    }}>
+                        <div className='btn btn-outline-primary' >
+                            edit
                         </div>
-                        <div className='btn btn-outline-danger' onClick={this.refuseRdv}>
-                            disapprouver
-                        </div>
+                    </Link>
+                        
                 </div>
             )
         } 
@@ -71,6 +61,7 @@ class Show_user extends React.Component{
     //visualisation
   
     render() {
+        
         
         return(
             <div className='Show_user'>

@@ -15,6 +15,7 @@ import { BrowserRouter as Router, Route, Switch,Redirect } from 'react-router-do
 import Afficher_rdvs from './Medecin/rdv_gestion/Afficher_rdvs';
 import './Home_user.css';
 import Medecin_dashboard from './Medecin/dashboard/Medecin_dashboard';
+import ChartRdv from './Medecin/dashboard/RdvStatistic'
 
 class Home_user extends React.Component {
 
@@ -37,6 +38,8 @@ class Home_user extends React.Component {
                                 <Route path='/medecin/ordonnance'> <Ordonnance /> </Route>
                                 <Route path='/medecin/ecg_graph'> <SciChartText /> </Route>
                                 <Route path='/medecin/afficher_rdvs'> <Afficher_rdvs /> </Route>
+                                <Route path='/medecin/chartrdv'> <ChartRdv /> </Route>
+                                
                                 {/* <Route path='/admin/pdf'><Pdf_ordonnance/></Route> */}
                             </Switch>
                         

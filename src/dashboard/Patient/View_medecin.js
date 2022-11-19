@@ -8,14 +8,15 @@ class View_medecin extends React.Component {
             padding: '20px',
             height: '100%',
             overflow: 'scroll',
+            overflowX: 'hidden',
+            overflowY: 'hidden',
         }
     }
 
     render() {
         const list = this.props.users;
-        console.log('this is my list', list)
-        const mylist = list.map((myItem) =>  
-        <Show_medecin user={myItem} setMeIdAndName = {this.props.setMeId}/> )
+        const mylist = list.map((myItem, index) =>  
+        <Show_medecin user={myItem} setMeIdAndName = {this.props.setMeId} id={index}/> )
         return(
             <div className='View_medecin' style={this.style.View_medecin}>
                 {mylist}

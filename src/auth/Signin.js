@@ -101,7 +101,7 @@ class Signin extends React.Component {
             if(redirect && data.roles[0]==="ROLE_Medecin") {
                 return(
                     <Redirect to={{
-                        pathname: "/medecin",
+                        pathname: "/medecin/dashboard",
                     }}/>
                 );
             }
@@ -109,7 +109,7 @@ class Signin extends React.Component {
             if(redirect && data.roles[0]==="ROLE_Patient") {
                 return(
                     <Redirect to={{
-                        pathname: "/patient",
+                        pathname: "/patient/addRdv",
                     }}/>
                 );
             }

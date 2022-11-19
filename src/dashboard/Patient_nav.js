@@ -16,6 +16,11 @@ class Medecin_nav extends React.Component {
                             <span>prendre rendez-vous</span>
                         </div>
                     </Link>
+                    <Link to='/patient/afficher_rdv' className='dashboard_item'>
+                        <div className="nav__item">
+                            <span>afficher rdv</span>
+                        </div>
+                    </Link>
                 </div>
             </div>
         );

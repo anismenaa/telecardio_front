@@ -18,7 +18,8 @@ class AddRdv extends React.Component {
            notes: '',
            patient_id: '',
 
-        }
+        },
+        errors: []
     }
     
 
@@ -26,9 +27,9 @@ class AddRdv extends React.Component {
     getMeAllDoctors = () => {
         axios.get("http://localhost:8090/gestion-compte-service/api/auth/users")
             .then(response => {
-                console.log(response)
+               
                 response.data.forEach(user => {
-                    console.log()
+                
                     if(user.roles[0].name === 'ROLE_Medecin') {
                         this.doctors.push(user)
                     }
@@ -40,7 +41,7 @@ class AddRdv extends React.Component {
                     ...this.state,
                     liste_medecins: this.doctors
                 })
-                console.log('doctors : ', this.doctors)
+                
                 
             })
             
@@ -54,13 +55,10 @@ class AddRdv extends React.Component {
                 [event.target.name]: event.target.value
             }
         })
-
-        console.log('date : ', this.state.date_rdv)
     }
 
     componentDidMount = () => {
         const currentUser = JSON.parse(localStorage.getItem('currentUser')).id;
-        console.log('myCurrentUser id : ',currentUser)
         this.getMeAllDoctors();
         this.getMeTheMinimum();
         this.setState({
@@ -70,6 +68,7 @@ class AddRdv extends React.Component {
                 patient_id: currentUser
             }
         })
+        
 
     }
 
@@ -81,8 +80,11 @@ class AddRdv extends React.Component {
         'background' :{
             padding: '100px',
             height: '100vh',
+            
         },
         'addRdv':{
+            borderRadius: '20px',
+            overflow: 'hidden',
             display:'flex',
            
             width: '100%',
@@ -102,7 +104,9 @@ class AddRdv extends React.Component {
         },
         'addRdv__rightSection' : {
             border: 'none',
-            width: '50%'
+            borderLeft: '1px solid black',
+            width: '50%',
+            backgroundColor: '#2a52be'
         },
 
         'inputRdv':{
@@ -118,6 +122,14 @@ class AddRdv extends React.Component {
             width: '100%',
             height: '60px',
    
+        },
+        'btnDiv':{
+            width: '100%',
+        },
+        'submitFormBtn': {
+            margin: 'auto',
+            borderRadius: '10px',
+            width: '100%'
         }
 
     }
@@ -133,56 +145,102 @@ class AddRdv extends React.Component {
         })
     }
 
+   
+
+    checkErrors = (object) => {
+        const errors = [];
+        if (object.date==''){
+            errors.push("veuillez selectionner la date et l'heure");
+        }
+        if(object.doc_name==''){
+            errors.push("veuillez choisir un medecin.")
+        }
+        if(object.notes==''){
+            errors.push('veuillez introduire une note.')
+        }
+        
+        this.setState({
+            ...this.state,
+            errors: errors
+        })
+
+        
+    }
+
     submitFormRdv = () => {
         alert('you will submit');
-        axios.post('http://localhost:8084/add-appointment', this.state.rdvToPost)
+        this.checkErrors(this.state.rdvToPost);
+        if(this.state.errors.length==0){
+            axios.post('http://localhost:8084/add-appointment', this.state.rdvToPost)
             .then(result => {
-                if(result.data == true){  
-                    console.log(result)
+                if(result.data == 3){  
+                   
                     }  
-                    else{  
-                        return    alert("I am an alert box!");
+                    else if (result.data == 2){  
+                        return alert("this date is passed change it please");
                     }  
-                
+                else{
+                    alert("sorry this doctor already have an appointment that exact date")
+                }
             }
             
             
             )
+        } else{
+            const div_error = document.getElementById('errors__display');
+            alert(div_error)
+            
+            this.state.errors.forEach( err => {
+                const error_item = document.createElement('p');
+                const error_text = document.createTextNode(err)
+                alert(error_text)
+                error_item.appendChild(error_text)
+                div_error.appendChild(error_item)
+            })
+        }
+        
     }
 
    
 
 
     render() {
-        console.log('zebiii ',this.state)
+        console.log('state ... ', this.state)
         return(
             <div className='background' style={this.style.background} >
                 <div className='addRdv' style={this.style.addRdv}>
                     <div className='addRdv__leftSection' style={this.style.addRdv__leftSection}>
                         <div className='inputRdv' style={this.style.inputRdv}>
-                        <input
-                            className = 'inputRdvField'
-                            name='notes'
-                            type='text'
-                            onChange={this.inputChange}
-                            value={this.state.rdvToPost.notes}
-                            placeholder='notes'
-                            style= {
-                                this.style.inputRdvField
-                            }
-                        />
-                        <input
-                            className = 'inputRdvField'
-                            type='datetime-local'
-                            name='date'
-                            onChange={this.inputChange}
-                            value={this.state.rdvToPost.date}
-                            style= {
-                                this.style.inputRdvField
-                            }
-                        />
+                            <h1>Ajout de Rendez-vous :</h1>
+                            <input
+                                className = 'inputRdvField'
+                                name='notes'
+                                type='text'
+                                onChange={this.inputChange}
+                                value={this.state.rdvToPost.notes}
+                                placeholder='notes'
+                                style= {
+                                    this.style.inputRdvField
+                                }
+                            />
+                            <input
+                                className = 'inputRdvField'
+                                type='datetime-local'
+                                name='date'
+                                onChange={this.inputChange}
+                                value={this.state.rdvToPost.date}
+                                style= {
+                                    this.style.inputRdvField
+                                }
+                            />
+                            <div style={this.style.btnDiv}>
+                                <button className='btn btn-primary' onClick={this.submitFormRdv} style={this.style.submitFormBtn}>valider</button>
+                            </div>
+                            <div id='errors__display'>
+
+                            </div>
                         </div>
-                        <button onClick={this.submitFormRdv}>valider</button>
+                        
                     </div>
                     <div className='addRdv__rightSection' style={this.style.addRdv__rightSection}>
                         <View_medecin users={this.state.liste_medecins} setMeId ={(id, nom)=>{this.setMeIdAndName(id, nom)}}/>
